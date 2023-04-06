@@ -19,6 +19,20 @@ public class Developer extends User
 		devClearance = clearance;
 	}
 	
+	public boolean getDevClearance()
+	{
+		return devClearance;
+	}
+	
+	/***
+	 * Setter method for clearance
+	 * @param clearance
+	 */
+	public void setDevClearance(boolean clearance)
+	{
+		devClearance = clearance;
+	}
+	
 	/**
 	 * Adds the restaurants to the restaurant manager
 	 */
