@@ -75,5 +75,12 @@ public class Restaurant {
 		this.reviews = reviews;
 	}
 	
+	public void addFood(Food food) {
+		if(this.menu.contains(food)) {
+			System.out.println("Food already in the restaurants menu.");
+		}else {
+			this.menu.add(food);
+		}
+	}
 	
 }
