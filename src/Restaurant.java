@@ -25,6 +25,7 @@ public class Restaurant {
 	
 	//adds a food preference to available preferences accommodated by restaurant
 	public void addFoodPref(foodPref) {
+		//may have duplicates, switch to set.
 		containsPrefs.add(foodPref);
 	}
 	
