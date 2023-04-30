@@ -3,6 +3,12 @@ package Foodie;
 public class Review {
 	private String review;
 	private double rating;
+	
+	public Review(String review, double rating) {
+		this.review = review;
+		this.rating = rating;
+	}
+	
 	public String getReview() {
 		return review;
 	}
