@@ -4,10 +4,11 @@ import java.util.ArrayList;
 //EDIT HISTORY:
 //3-28-2023 Robert Veloya: uploaded class with attributes
 //4-6-2023 Elena Ilic: class populated to match diagram
+//4-30-2023 Elena Ilic: fixed calculateRating, addFoodPref, remove setStoreRating
 
 public class Restaurant {
 	private String storeName;
-	private String storeRating;
+	private double storeRating;
 	private ArrayList<Preferences> containsPrefs;
 	private ArrayList<Food> menu;
 	private ArrayList<Review> reviews;
@@ -20,11 +21,11 @@ public class Restaurant {
 			avg += r.getRating();
 		}
 		//calculate avg
-		return avg/reviews.size();
+		storeRating = avg/reviews.size();
 	}
 	
 	//adds a food preference to available preferences accommodated by restaurant
-	public void addFoodPref(foodPref) {
+	public void addFoodPref(Preferences foodPref) {
 		//may have duplicates, switch to set.
 		containsPrefs.add(foodPref);
 	}
@@ -43,12 +44,8 @@ public class Restaurant {
 		this.storeName = storeName;
 	}
 
-	public String getStoreRating() {
+	public double getStoreRating() {
 		return storeRating;
-	}
-
-	public void setStoreRating(String storeRating) {
-		this.storeRating = storeRating;
 	}
 
 	public ArrayList<Preferences> getContainsPrefs() {
