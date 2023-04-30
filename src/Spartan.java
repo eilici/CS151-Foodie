@@ -5,26 +5,27 @@ import java.util.Arrays;
 //EDIT HISTORY:
 //3-28-2023 Robert Veloya: uploaded class with attributes, getters, setters
 //4-6-2023 Elena Ilic: Parameterized constructor, more attributes, writeReview
+import java.util.List;
 
 public class Spartan extends User{
 	private int placesVisited;
-	ArrayList<Preferences> foodPref = new ArrayList<>();
+	List<Preferences> foodPref = new ArrayList<>();
 	String userName;
 	String password;
-	ArrayList<Reviews> prevReviews;
+	ArrayList<Review> prevReviews;
 
 	public Spartan() {
 		this.setUserID(null);
 		this.foodPref.replaceAll(null);
 		this.placesVisited = 0;
-		prevReviews = new ArrayList<Reviews>;
+		prevReviews = new ArrayList<>();
 	}
 	
-	public Spartan(String userName, String password, Preferences[] foodiePref) {
+	public Spartan(String userName, String password, Preferences[] foodPref) {
 		this.userName = userName;
 		this.password = password;
-		this.foodPref = Arrays.asList(foodiePref);
-		prevReviews = new ArrayList<Reviews>;
+		this.foodPref = Arrays.asList(foodPref);
+		prevReviews = new ArrayList<>();
 	 }
 	
 	//write a review and add it to the list of reviews of a restaurant
@@ -37,7 +38,7 @@ public class Spartan extends User{
 		restaurant.calculateRating();
 		
 		//adds food preferences to lists for overall restaurant AND food
-		for (Preference p: prefs){
+		for (Preferences p: prefs){
 			restaurant.addFoodPref(p);
 			food.addFoodPref(p);
 			
@@ -52,7 +53,7 @@ public class Spartan extends User{
 		this.placesVisited = placesVisited;
 	}
 
-	public ArrayList<Preferences> getFoodPref() {
+	public List<Preferences> getFoodPref() {
 		return foodPref;
 	}
 
