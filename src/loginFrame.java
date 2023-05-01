@@ -1,4 +1,4 @@
-package com.foodie.main;
+package Foodie;
 
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -22,6 +22,12 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+
+//edit 4-30-2023 Elena Ilic - remove no decoration declaration
+//                          - set text areas to not editable
+//                          - set resizable false
+
 
 public class loginFrame extends JFrame {
 	
@@ -51,9 +57,9 @@ public class loginFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public loginFrame() {
-		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 756, 475);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -104,6 +110,7 @@ public class loginFrame extends JFrame {
 		panel_3.add(lblNewLabel);
 		
 		JTextArea txtrSjsuFoodieApp = new JTextArea();
+		txtrSjsuFoodieApp.setEditable(false);
 		txtrSjsuFoodieApp.setForeground(new Color(0, 85, 168));
 		txtrSjsuFoodieApp.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 35));
 		txtrSjsuFoodieApp.setText("SJSU\r\nFoodie App");
@@ -117,6 +124,7 @@ public class loginFrame extends JFrame {
 		panel_2.setLayout(null);
 		
 		JTextArea txtrWelcomeSpartanTo = new JTextArea();
+		txtrWelcomeSpartanTo.setEditable(false);
 		txtrWelcomeSpartanTo.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 35));
 		txtrWelcomeSpartanTo.setForeground(new Color(255, 255, 255));
 		txtrWelcomeSpartanTo.setText("Welcome, Spartan\r\nTo the SJSU Foodie App!");
@@ -126,6 +134,7 @@ public class loginFrame extends JFrame {
 		
 		JTextArea txtrFirstTime = new JTextArea();
 		txtrFirstTime.setText("First time?");
+		txtrFirstTime.setEditable(false);
 		txtrFirstTime.setForeground(Color.WHITE);
 		txtrFirstTime.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 30));
 		txtrFirstTime.setBackground(new Color(0, 85, 168));
