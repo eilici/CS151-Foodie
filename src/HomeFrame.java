@@ -34,10 +34,12 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+// Created 4-30-2023 by Elena Ilic
 
 public class HomeFrame extends JFrame implements ActionListener, ListSelectionListener {
 
 	private String username;
+	private Spartan user;
 
 	private Container c;
 
@@ -55,12 +57,14 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 	private JList restaurants;
 
 	// Restaurants
-	private Restaurant[] list;
+	private static ArrayList<Restaurant> list = Foodie.foodieRestaurants;
 
-	public HomeFrame(String username, Restaurant[] list) {
+	public HomeFrame(Spartan user) {
+		this.user = user;
+		username = user.getUserName();
+		
 		// get Restaurant names
-		this.list = list;
-		String[] restaurantNames = new String[list.length];
+		String[] restaurantNames = new String[list.size()];
 
 		// set NAMES to a list to display
 		int i = 0;
@@ -80,7 +84,7 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 		c = getContentPane();
 		c.setLayout(null);
 
-		//image icon
+		// image icon
 		Image img = new ImageIcon("src/Foodie/SpartanSpirit[2color]_4cp.png").getImage().getScaledInstance(100, 100,
 				Image.SCALE_SMOOTH);
 
@@ -89,14 +93,14 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 		icon.setIcon(new ImageIcon(img));
 
 		c.add(icon);
-		
+
 		// sjsu brand
 		sjsu = new JLabel("Foodie");
 		sjsu.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 35));
 		sjsu.setForeground(new Color(0, 85, 168));
 		sjsu.setSize(250, 50);
 		sjsu.setBounds(120, 78, 152, 88);
-		
+
 		c.add(sjsu);
 
 		// create welcome label
@@ -108,7 +112,7 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 		c.add(welcome);
 
 		// show user filters
-		prefs = new JLabel("Filters: ");
+		prefs = new JLabel("Filters: " + user.getFoodPref());
 		prefs.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 15));
 		prefs.setForeground(new Color(0, 85, 168));
 		prefs.setSize(250, 35);
@@ -165,14 +169,24 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 		setVisible(true);
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	//getter to update label
+	public JLabel getPrefs() {
+		return prefs;
+	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == make) {
+			
+		}
+		if (e.getSource() == update) {
+			new PrefPanel(this.user, this);
+		}
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (!e.getValueIsAdjusting()) {
-			new MenuFrame(list[restaurants.getSelectedIndex()]);
+			new MenuFrame(list.get(restaurants.getSelectedIndex()));
 		}
 
 	}
