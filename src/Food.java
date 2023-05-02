@@ -6,6 +6,16 @@ public class Food {
 	private String name;
 	private ArrayList<Preferences> foodPref;
 
+	
+	public Food(String name, Preferences[] foodPref) {
+		super();
+		this.name = name;
+		this.foodPref = new ArrayList<>();
+		for (Preferences p: foodPref) {
+			this.foodPref.add(p);
+		}
+	}
+
 
 	public String getName() {
 		return name;
