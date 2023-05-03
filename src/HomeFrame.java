@@ -240,7 +240,7 @@ public class HomeFrame extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == go) {
 			Restaurant restaurant = filtered[restaurants.getSelectedIndex()];
-			MenuFrame menu = new MenuFrame(restaurant);
+			MenuFrame menu = new MenuFrame(restaurant, this);
 			this.setVisible(false);
 		}
 	}
