@@ -1,4 +1,4 @@
-package Foodie;
+package foodie;
 
 import java.io.File;
 import java.io.IOException;
