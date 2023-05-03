@@ -1,4 +1,4 @@
-package Foodie;
+package foodie;
 
 import java.util.ArrayList;
 import java.util.Random;
