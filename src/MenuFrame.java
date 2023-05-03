@@ -37,7 +37,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 //Created 4-30-2023 by Elena Ilic
-//5-3-2023 connect to homeframe.
 
 public class MenuFrame extends JFrame implements ActionListener, ListSelectionListener {
 
@@ -50,7 +49,7 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 
 	private JButton go;
 	private JButton back;
-	private JButton reviews;
+	private JButton rev;
 
 	private JList menuList;
 	private ArrayList<Food> menuInput;
@@ -120,14 +119,23 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 		go.setLocation(54, 280);
 		go.addActionListener(this);
 		c.add(go);
-
+		
+		rev = new JButton("See Reviews");
+		rev.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
+		rev.setForeground(new Color(0, 85, 168));
+		rev.setBackground(new Color(234, 172, 53));
+		rev.setSize(200, 35);
+		rev.setLocation(54, 330);
+		rev.addActionListener(this);
+		c.add(rev);
+		
 		// go back to main page
 		back = new JButton("Go Back");
 		back.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		back.setForeground(new Color(0, 85, 168));
 		back.setBackground(new Color(234, 172, 53));
 		back.setSize(200, 35);
-		back.setLocation(54, 340);
+		back.setLocation(54, 380);
 		back.addActionListener(this);
 		c.add(back);
 
@@ -178,6 +186,10 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 		if (e.getSource() == back) {
 			this.dispose();
 			homeframe.setVisible(true);
+		}
+		
+		if (e.getSource() == rev) {
+			ReviewView reviews = new ReviewView();
 		}
 
 	}
