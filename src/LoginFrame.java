@@ -1,4 +1,4 @@
-package Foodie;
+package foodie;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.awt.EventQueue;
@@ -145,11 +145,11 @@ public class LoginFrame extends JFrame implements ActionListener {
 		txtrFirstTime.setBounds(170, 270, 141, 30);
 		panel_2.add(txtrFirstTime);
 
-		sign = new JButton("SIGN IN");
+		sign = new JButton("SIGN UP");
 		sign.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 20));
 		sign.setForeground(new Color(0, 85, 168));
 		sign.setBackground(new Color(234, 172, 53));
-		sign.setSize(110, 41);
+		sign.setSize(120, 41);
 		sign.setLocation(164, 306);
 		sign.addActionListener(this);
 		panel_2.add(sign);
@@ -189,13 +189,15 @@ public class LoginFrame extends JFrame implements ActionListener {
 			if (txtUsername.getText().equals("Username") || txtUsername.getText().equals("")) {
 				showMessageDialog(null, "Please enter a valid username.");
 			}
-			if (new String(pwdPassword.getPassword()).equals("Password") || new String(pwdPassword.getPassword()).equals("")) {
+			if (new String(pwdPassword.getPassword()).equals("Password")
+					|| new String(pwdPassword.getPassword()).equals("")) {
 				showMessageDialog(null, "Please enter a valid password.");
-			}
-			else {
-				for (User u: users) {
-					if (u.getUserName().equals(txtUsername.getText()) && u.getPassword().equals(new String(pwdPassword.getPassword()))) {
-						HomeFrame h = new HomeFrame((Spartan)u);
+			} else {
+				for (User u : users) {
+					if (u.getUserName().equals(txtUsername.getText())
+							&& u.getPassword().equals(new String(pwdPassword.getPassword()))) {
+						HomeFrame h = new HomeFrame((Spartan) u);
+						this.dispose();
 					}
 				}
 			}
