@@ -1,4 +1,4 @@
-package Foodie;
+package foodie;
 
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -34,9 +34,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
 // Created 4-30-2023 by Elena Ilic
 
-public class HomeFrame extends JFrame implements ActionListener, ListSelectionListener {
+public class HomeFrame extends JFrame implements ActionListener {
 
 	private String username;
 	private Spartan user;
@@ -51,10 +52,13 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 
 	private JButton make;
 	private JButton update;
-	// private JButton my;
+	private JButton go;
 
 	// NAMES of restaurants
 	private JList restaurants;
+
+	// filtered restaurant array
+	private Restaurant[] filtered;
 
 	// Restaurants
 	private static ArrayList<Restaurant> list = Foodie.foodieRestaurants;
@@ -62,16 +66,14 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 	public HomeFrame(Spartan user) {
 		this.user = user;
 		username = user.getUserName();
-		
-		// get Restaurant names
-		String[] restaurantNames = new String[list.size()];
 
-		// set NAMES to a list to display
-		int i = 0;
-		for (Restaurant r : list) {
-			restaurantNames[i] = r.getStoreName();
-			i++;
-		}
+		// filter Restaurant view based on preferences
+		// restaurants sorted by criteria: has at least one preference specified by user
+		// prefs
+		filtered = refreshRestaurants();
+
+		// get Restaurant names
+		String[] restaurantNames = createList(filtered);
 
 		// create window
 		setTitle("Foodie App");
@@ -125,7 +127,7 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 		make.setForeground(new Color(0, 85, 168));
 		make.setBackground(new Color(234, 172, 53));
 		make.setSize(200, 35);
-		make.setLocation(54, 280);
+		make.setLocation(54, 330);
 		make.addActionListener(this);
 		c.add(make);
 
@@ -135,9 +137,18 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 		update.setForeground(new Color(0, 85, 168));
 		update.setBackground(new Color(234, 172, 53));
 		update.setSize(200, 35);
-		update.setLocation(54, 340);
+		update.setLocation(54, 380);
 		update.addActionListener(this);
 		c.add(update);
+
+		go = new JButton("See More");
+		go.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
+		go.setForeground(new Color(0, 85, 168));
+		go.setBackground(new Color(234, 172, 53));
+		go.setSize(200, 35);
+		go.setLocation(54, 280);
+		go.addActionListener(this);
+		c.add(go);
 
 		// create color block division
 		JPanel panel = new JPanel(null);
@@ -160,7 +171,6 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 		restaurants.setBackground(Color.WHITE);
 		restaurants.setBorder(BorderFactory.createEtchedBorder());
 		restaurants.setBounds(80, 60, 270, 300);
-		restaurants.addListSelectionListener(this);
 
 		panel.add(restaurants);
 
@@ -169,25 +179,69 @@ public class HomeFrame extends JFrame implements ActionListener, ListSelectionLi
 		setVisible(true);
 	}
 
-	//getter to update label
+	// getter to update label
 	public JLabel getPrefs() {
 		return prefs;
 	}
 
+	public JList getRestaurants() {
+		return restaurants;
+	}
+
+	// creates string array of Restaurant names according to filters
+	public String[] createList(Restaurant[] filter) {
+		String[] restaurantNames = new String[filter.length];
+		int i = 0;
+		for (Restaurant r : filter) {
+			restaurantNames[i] = r.getStoreName();
+			i++;
+		}
+		return restaurantNames;
+	}
+
+	// filters restaurant list based on if it contains at least one preference
+	// specified by user's preferences
+	public Restaurant[] refreshRestaurants() {
+		HashSet<Restaurant> nodup = new HashSet<>();
+
+		// if restaurant fits requirements set by user prefs, add to hashset
+		for (Restaurant r : list) {
+
+			for (Preferences p : user.getFoodPref()) {
+				// add preference
+				if (r.getContainsPrefs().contains(p)) {
+					nodup.add(r);
+				}
+			}
+		}
+
+		// if user has no preferences show all restaurants
+		if (user.getFoodPref().isEmpty()) {
+			nodup.addAll(list);
+		}
+
+		Restaurant[] finished = new Restaurant[nodup.size()];
+		// relocation of objects back into array
+		int i = 0;
+		for (Restaurant r : nodup) {
+			finished[i] = r;
+			i++;
+		}
+
+		return finished;
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == make) {
-			
+			ReviewPanel review = new ReviewPanel();
 		}
 		if (e.getSource() == update) {
 			new PrefPanel(this.user, this);
 		}
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		if (!e.getValueIsAdjusting()) {
-			new MenuFrame(list.get(restaurants.getSelectedIndex()));
+		if (e.getSource() == go) {
+			Restaurant restaurant = filtered[restaurants.getSelectedIndex()];
+			MenuFrame menu = new MenuFrame(restaurant);
 		}
-
 	}
+
 }
