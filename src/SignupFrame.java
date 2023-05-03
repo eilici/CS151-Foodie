@@ -143,7 +143,7 @@ public class SignupFrame extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Do you want to close this window?", "Confirmation",JOptionPane.YES_NO_OPTION) == 0) {
-					signUpFrame.this.dispose();
+					SignupFrame.this.dispose();
 				}
 			}
 		});
