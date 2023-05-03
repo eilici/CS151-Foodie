@@ -1,4 +1,4 @@
-package Foodie;
+package foodie;
 
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -14,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -47,11 +49,13 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 
 	private JButton go;
 	private JButton back;
+	private JButton reviews;
 
 	private JList menuList;
+	private ArrayList<Food> menuInput;
 
 	public MenuFrame(Restaurant restaurant) {
-		ArrayList<Food> menuInput = restaurant.getMenu();
+		menuInput = restaurant.getMenu();
 
 		String[] menuItems = new String[menuInput.size()];
 
@@ -96,7 +100,7 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 		desc1.setSize(250, 35);
 		desc1.setLocation(30, 180);
 		c.add(desc1);
-		
+
 		desc2 = new JLabel("Click 'Go Back' to return!");
 		desc2.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		desc2.setForeground(new Color(0, 85, 168));
@@ -163,7 +167,14 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getSource() == go) {
+			Food food = menuInput.get(menuList.getSelectedIndex());
+			showMessageDialog(null, food.toString());
+		}
+
+		if (e.getSource() == back) {
+			this.dispose();
+		}
 
 	}
 
