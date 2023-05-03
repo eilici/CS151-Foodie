@@ -1,4 +1,4 @@
-package Foodie;
+package foodie;
 
 import java.util.ArrayList;
 
@@ -42,5 +42,13 @@ public class Food {
 		}else {
 			System.out.println("Food Preference already added");
 		}
+	}
+	
+	public String toString() {
+		String str = "Item: " + name + "\n" + "Preferences: ";
+		for (Preferences p : foodPref) {
+			str = str + "\n" +p;
+		}
+		return str;
 	}
 }
