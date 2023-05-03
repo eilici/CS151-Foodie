@@ -1,4 +1,4 @@
-package Foodie;
+package foodie;
 
 import java.util.ArrayList;
 //EDIT HISTORY:
@@ -75,19 +75,19 @@ public class Restaurant {
 
 	@Override
 	public String toString() {
-		String str= storeName + "@";
-		for (Food f: menu) {
+		String str = storeName + "@";
+		for (Food f : menu) {
 			str = str + f.getName() + ",";
 		}
-		str = str +"@";
-		for (Food f: menu) {
-			for (Preferences p:f.getFoodPref()) {
+		str = str + "@";
+		for (Food f : menu) {
+			for (Preferences p : f.getFoodPref()) {
 				str = str + p.toString() + "&";
 			}
 			str = str + ",";
 		}
-		str = str +"@";
-		for (String r: reviews) {
+		str = str + "@";
+		for (String r : reviews) {
 			str = str + r + ",";
 		}
 		return str;
