@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 //5-1-2023 : Created by Elena Ilic
+//5-3-2023: Edited to take id args
 
 public class Foodie {
 	public static ArrayList<Restaurant> foodieRestaurants = new ArrayList<>();
@@ -131,6 +132,9 @@ public class Foodie {
 
 			// create user prefs
 			String[] userPrefs = d[2].split("&");
+			
+			//get ID
+			String id = d[3];
 
 			// convert user prefs to enum
 			Preferences[] uPrefs = new Preferences[userPrefs.length];
@@ -143,7 +147,7 @@ public class Foodie {
 			String lname = d[4];
 
 			// create user and add to list
-			User user = new Spartan(username, password, uPrefs);
+			User user = new Spartan(username, password, id, uPrefs);
 			foodieUsers.add(user);
 		
 			
