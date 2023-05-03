@@ -37,6 +37,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 //Created 4-30-2023 by Elena Ilic
+//5-3-2023 connect to homeframe.
 
 public class MenuFrame extends JFrame implements ActionListener, ListSelectionListener {
 
@@ -53,10 +54,12 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 
 	private JList menuList;
 	private ArrayList<Food> menuInput;
+	private HomeFrame homeframe;
 
-	public MenuFrame(Restaurant restaurant) {
+	public MenuFrame(Restaurant restaurant, HomeFrame homeframe) {
 		menuInput = restaurant.getMenu();
-
+		this.homeframe = homeframe;
+		
 		String[] menuItems = new String[menuInput.size()];
 
 		// set NAMES to a list to display
@@ -174,6 +177,7 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 
 		if (e.getSource() == back) {
 			this.dispose();
+			homeframe.setVisible(true);
 		}
 
 	}
