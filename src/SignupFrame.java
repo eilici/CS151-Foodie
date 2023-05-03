@@ -129,26 +129,4 @@ public class SignupFrame extends JFrame implements ActionListener {
 		}
 
 	}
-	
-	JLabel lblExit = new JLabel("X");
-		lblExit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblExit.setForeground(Color.red);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblExit.setForeground(new Color(0,58,168));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Do you want to close this window?", "Confirmation",JOptionPane.YES_NO_OPTION) == 0) {
-					signUpFrame.this.dispose();
-				}
-			}
-		});
-		lblExit.setForeground(new Color(0, 85, 168));
-		lblExit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblExit.setBounds(287, 0, 13, 27);
-		panel.add(lblExit);
 }
