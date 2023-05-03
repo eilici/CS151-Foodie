@@ -98,20 +98,20 @@ public class SignupFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == done) {
 			PasswordChecker p = new PasswordChecker();
-			
-			//check username and password
+
+			// check username and password
 			if (username.getText().equals("Username") || username.getText().equals("")) {
 				showMessageDialog(null, "Please enter a valid username.");
 				return;
 			}
-			
-			for (User u: users) {
+
+			for (User u : users) {
 				if (u.getUserName().equals(username.getText())) {
 					showMessageDialog(null, "Username is taken.");
 					return;
 				}
 			}
-			
+
 			try {
 				p.checkPassword(new String(password.getPassword()));
 			} catch (PasswordException ex) {
@@ -119,15 +119,14 @@ public class SignupFrame extends JFrame implements ActionListener {
 				showMessageDialog(null, "Password requirements not met: " + ex.getMessage());
 				return;
 			}
-			
-			//create new user from fields and add to list
-			User newUser = new Spartan(username.getText(),new String(password.getPassword()), new Preferences[] {} );
+
+			// create new user from fields and add to list
+			User newUser = new Spartan(username.getText(), new String(password.getPassword()), new Preferences[] {});
 			users.add(newUser);
-			
-			//redirect user
-			PrefPanel pref = new PrefPanel((Spartan)newUser,new HomeFrame((Spartan)newUser));
+
+			// redirect user
+			PrefPanel pref = new PrefPanel((Spartan) newUser, new HomeFrame((Spartan) newUser));
 		}
 
 	}
 }
-
