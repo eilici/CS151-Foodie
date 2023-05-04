@@ -34,7 +34,7 @@ import java.util.ArrayList;
 //                          - write actionlistener for buttons
 public class LoginFrame extends JFrame implements ActionListener {
 
-	private Image img_logo = new ImageIcon("src/Foodie/SpartanSpirit[2color]_4cp.png").getImage().getScaledInstance(100,
+	private Image img_logo = new ImageIcon("src/foodie/SpartanSpirit[2color]_4cp.png").getImage().getScaledInstance(100,
 			100, Image.SCALE_SMOOTH);
 
 	private JPanel contentPane;
@@ -154,31 +154,6 @@ public class LoginFrame extends JFrame implements ActionListener {
 		sign.addActionListener(this);
 		panel_2.add(sign);
 
-		JLabel lblXexit = new JLabel("X");
-		lblXexit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblXexit.setForeground(Color.red);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblXexit.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Do you want to close this window?", "Confirmation",
-						JOptionPane.YES_NO_OPTION) == 0) {
-					LoginFrame.this.dispose();
-				}
-			}
-		});
-		lblXexit.setFont(new Font("Comic Sans MS", Font.BOLD, 11));
-		lblXexit.setForeground(Color.WHITE);
-		lblXexit.setBounds(430, 0, 15, 24);
-		panel_2.add(lblXexit);
-
 		this.setVisible(true);
 
 	}
@@ -188,18 +163,22 @@ public class LoginFrame extends JFrame implements ActionListener {
 		if (e.getSource() == log) {
 			if (txtUsername.getText().equals("Username") || txtUsername.getText().equals("")) {
 				showMessageDialog(null, "Please enter a valid username.");
+				return;
 			}
 			if (new String(pwdPassword.getPassword()).equals("Password")
 					|| new String(pwdPassword.getPassword()).equals("")) {
 				showMessageDialog(null, "Please enter a valid password.");
+				return;
 			} else {
 				for (User u : users) {
 					if (u.getUserName().equals(txtUsername.getText())
 							&& u.getPassword().equals(new String(pwdPassword.getPassword()))) {
 						HomeFrame h = new HomeFrame((Spartan) u);
 						this.dispose();
+						return;
 					}
 				}
+				showMessageDialog(null, "User not found.");
 			}
 		}
 
