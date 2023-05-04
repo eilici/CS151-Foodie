@@ -9,11 +9,11 @@ Robert worked on Class diagram.
 Manasi created the state diagram. After the project was finished, Manasi went back and updated the diagrams. 
 
 ## Team members working on the project (code) and report:
-For the project, Elena worked on both front end and backend. She 
+For the project, Elena worked on both the front end and back end of the application. She implemented numerous classes and frames. She also worked on ensuring that the backend complied with the front end.
 
 For the project, Robert worked on different wireframes, color schemes, and fonts which would fall under front-end development with the use of Java Swing that is used later in the application. He also constructed the skeleton class that would be later developed further by Elena.
 
-For the report, Manasi added several different methods and classes during the code. Also, she wrote the project report. 
+For the project, Manasi worked on implementing various methods to support the backend. For the report, she worked on the several parts, including the operations, functionality, intended usage, the diagrams, and the 
 
 ## Team members working on the project presentation and their contributions to details:
 For the project presentation, Elena talked about the technical details covered in the presentation. She explained the different Object Oriented Design concepts that we implemented in the program. 
@@ -30,7 +30,7 @@ The issue stated beforehand was solved by using <Insert method used to resolve p
 
 ## Assumptions / Operating Environments / Intended Usage
 
-Assumptions: 
+Assumptions: Before running the program, please download and install the Helvettica Nueue font. 
 
 Operating Evnironment: For the front-end, we utilized Java Swing and we used Java for the back-end. We chose to use Java Swing because Java Swing is part of the Java foundation class; thus, it was easy to connect the front-end to the back-end. 
 
