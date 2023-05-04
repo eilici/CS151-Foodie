@@ -21,6 +21,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 //Created 4-30-2023 by Elena Ilic
+//5-3-2023 Elena Ilic: fixed refresh of restaurant list
 public class PrefPanel extends JFrame implements ActionListener {
 	private Container c;
 
@@ -146,8 +147,8 @@ public class PrefPanel extends JFrame implements ActionListener {
 
 			// change user data and update preferences on home frame.
 			user.setFoodPref(userpref);
-		homeframe.getPrefs().setText("Filters: " + user.getFoodPref());
-		homeframe.getRestaurants().setListData(homeframe.createList(homeframe.refreshRestaurants()));
+		homeframe.getFilters().setText(user.getFoodPref().toString());
+		homeframe.getRestaurants().setListData(homeframe.refreshRestaurants());
 		// insert here:save prefs and rebuild file
 		//
 		this.dispose();
