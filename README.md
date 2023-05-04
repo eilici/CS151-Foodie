@@ -62,10 +62,10 @@ Desc | Diagram showing structure of project | Diagram showing behavior of classe
 - The user can select the restaruant to see the reviews and menu. Also, the user can add their own review of the restuarant.
 
 ## Steps to run the code:
-Navigate to the main page of the C151-Foodie repository. Click the Code button at the top right hand side of the page and copy the HTTPS link given to clone the repository. Using the Command Prompt or Terminal to clone the project onto your local device. Then, open up any IDE that runs Java into the folder that holds the cloned code and run the application. We used Eclipse to run our application. 
-
 To run the code in a way that is intended by the developers, a font that is included in the src/resource folder should be installed on the terminal first. This will allow the program to be in its aesthetic expectation.
 
-After installing the Helvettica Nueue font, the main method under the Foodie class is to be run. This will bring the user to the login page where they can enter their credentials if they are an existing user; if they are not an existing user, they can click the sign up button to enter their username and password which will be saved to the .txt file that stores user information.
+After installing the Helvettica Nueue font, navigate to the main page of the C151-Foodie repository. Click the Code button at the top right hand side of the page and copy the HTTPS link given to clone the repository. Using the Command Prompt or Terminal to clone the project onto your local device. Then, open up any IDE that runs Java into the folder that holds the cloned code. We used Eclipse to run our application. 
+
+Once the repository is cloned and downladed, the main method under the Foodie class is to be run. This will bring the user to the login page where they can enter their credentials if they are an existing user; if they are not an existing user, they can click the sign up button to enter their username and password which will be saved to the .txt file that stores user information.
 
 ## Snapshot of the running program:
