@@ -23,10 +23,10 @@ Robert spoke about different frames and designs that can be used for the applica
 Manasi was responsible for introducing the project during the presentation. She talked about the intentions of the application and the reasoning behind the project. Additionally, she talked about the functionality, operations of the project, and the environment that we chose and the basis of choosing these environment.
 
 ## Problem/Issues:
-One of the problems that the team faced <Insert problem here>.
+One of the problems that the team faced was figuring out how to store user information. This became an issue due to the absence of knowledge regarding JDBC implementation and any Data base languages.
 
 ## Solution:
-The issue stated beforehand was solved by using <Insert method used to resolve problem above>.
+The issue stated beforehand was solved by using .txt files to store user data. Although it might seem like an elementary solution to the problem, this will be updated in future subsequent releases by applying database capabilities. 
 
 ## Assumptions / Operating Environments / Intended Usage
 
