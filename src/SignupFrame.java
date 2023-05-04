@@ -27,6 +27,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+//5-3-2023 Robert Veloya created. Edited in group call.
+
 public class SignupFrame extends JFrame {
 
 	private JPanel contentPane;
