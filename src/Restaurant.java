@@ -6,6 +6,7 @@ import java.util.ArrayList;
 //4-6-2023 Elena Ilic: class populated to match diagram
 //4-30-2023 Elena Ilic: fixed calculateRating, addFoodPref, remove setStoreRating
 //5-1-2-23 Elena Ilic: remove rating + methods related, replace Review with String
+//5-3-29023 Elena Ilic: fix toStrinf, make former toString into write file
 
 public class Restaurant {
 	private String storeName;
@@ -73,8 +74,7 @@ public class Restaurant {
 		this.reviews = reviews;
 	}
 
-	@Override
-	public String toString() {
+	public String writeData() {
 		String str = storeName + "@";
 		for (Food f : menu) {
 			str = str + f.getName() + ",";
@@ -91,6 +91,10 @@ public class Restaurant {
 			str = str + r + ",";
 		}
 		return str;
+	}
+
+	public String toString() {
+		return this.getStoreName();
 	}
 
 	public void addFood(Food food) {
