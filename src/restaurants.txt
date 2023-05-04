@@ -1,4 +1,1 @@
 Restaurant A@Item A,Item B,Item C,Item D,Item E,Item F@HALAL,HALAL&EBT,VEGETARIAN,KOSHER&HALAL,KOSHER,KOSHER@Review 1,Review 2,Review 3,Review 4,Review 5#Restaurant B@Item A,Item B,Item C,Item D,Item E,Item F@VEGAN,VEGAN,VEGETARIAN&VEGAN,KOSHER,KOSHER,KETO@Review 1,Review 2,Review 3,Review 4,Review 5#Restaurant C@Item A,Item B,Item C,Item D,Item E,Item F@EBT,EBT,EBT,EBT,EBT,EBT@Review 1,Review 2,Review 3,Review 4,Review 5#Restaurant D@Item A,Item B,Item C,Item D,Item E,Item F@HIGHPROTEIN,HIGHPROTEIN&KETO,VEGETARIAN,HIGHPROTEIN,KETO,VEGAN@Review 1,Review 2,Review 3,Review 4,Review 5#Restaurant E@Item A,Item B,Item C,Item D,Item E,Item F@HALAL,HALAL,VEGETARIAN,KOSHER,KOSHER,KETO@Review 1,Review 2,Review 3,Review 4,Review 5
-
-
-
