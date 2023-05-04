@@ -47,27 +47,34 @@ public class MenuFrame extends JFrame implements ActionListener {
 	private JLabel menu;
 	private JLabel rev;
 
-	private JLabel desc1;
-	private JLabel desc2;
+	private JTextArea desc;
 
 	private JButton go;
 	private JButton back;
+	private JButton make;
 
-	private JList menuList;
+	private JList<String> menuList;
 	private JTextArea reviewList;
 
 	private ArrayList<Food> menuInput;
-	private HomeFrame homeframe;
 	private ArrayList<String> reviewInput;
-
+	
+	String[] menuItems;
+	String[] reviewItems;
+	
+	private Restaurant restaurant;
+	private HomeFrame homeframe;
+	
 	public MenuFrame(Restaurant restaurant, HomeFrame homeframe) {
-		menuInput = restaurant.getMenu();
-		reviewInput = restaurant.getReviews();
+		this.restaurant = restaurant;
+		
+		menuInput = this.restaurant.getMenu();
+		reviewInput = this.restaurant.getReviews();
 
 		this.homeframe = homeframe;
 
-		String[] menuItems = new String[menuInput.size()];
-		String[] reviewItems = new String[reviewInput.size()];
+		menuItems = new String[menuInput.size()];
+		reviewItems = new String[reviewInput.size()];
 
 		// set NAMES to a list to display
 		int i = 0;
@@ -83,7 +90,7 @@ public class MenuFrame extends JFrame implements ActionListener {
 			j++;
 		}
 
-		setTitle("Foodie App");
+		setTitle("FOODIE App");
 
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 756, 475);
@@ -104,29 +111,38 @@ public class MenuFrame extends JFrame implements ActionListener {
 		c.add(icon);
 
 		// sjsu brand
-		sjsu = new JLabel("Foodie");
+		sjsu = new JLabel("FOODIE");
 		sjsu.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 35));
 		sjsu.setForeground(new Color(0, 85, 168));
 		sjsu.setSize(250, 50);
 		sjsu.setBounds(120, 78, 152, 88);
 
 		// create desc label
-		desc1 = new JLabel("Click 'See More' to see info!");
-		desc1.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
-		desc1.setForeground(new Color(0, 85, 168));
-		desc1.setSize(250, 35);
-		desc1.setLocation(30, 180);
-		c.add(desc1);
+		desc = new JTextArea(
+				"Post a new review with [New Review]. \nClick an item and click [See More] to view food preferences. \nClick [Go back] to return to home page.");
 
-		desc2 = new JLabel("Click 'Go Back' to return!");
-		desc2.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
-		desc2.setForeground(new Color(0, 85, 168));
-		desc2.setSize(250, 35);
-		desc2.setLocation(40, 210);
-		c.add(desc2);
+		desc.setEditable(false);
+		desc.setLineWrap(true);
+		desc.setWrapStyleWord(true);
+
+		desc.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 13));
+		desc.setForeground(new Color(0, 85, 168));
+		desc.setSize(250, 90);
+		desc.setLocation(40, 180);
+		c.add(desc);
+
+		// create button to make a new review
+		make = new JButton("NEW REVIEW");
+		make.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
+		make.setForeground(new Color(0, 85, 168));
+		make.setBackground(new Color(234, 172, 53));
+		make.setSize(200, 35);
+		make.setLocation(54, 280);
+		make.addActionListener(this);
+		c.add(make);
 
 		// see item info
-		go = new JButton("See More");
+		go = new JButton("SEE MORE");
 		go.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		go.setForeground(new Color(0, 85, 168));
 		go.setBackground(new Color(234, 172, 53));
@@ -136,7 +152,7 @@ public class MenuFrame extends JFrame implements ActionListener {
 		c.add(go);
 
 		// go back to main page
-		back = new JButton("Go Back");
+		back = new JButton("GO BACK");
 		back.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		back.setForeground(new Color(0, 85, 168));
 		back.setBackground(new Color(234, 172, 53));
@@ -172,13 +188,13 @@ public class MenuFrame extends JFrame implements ActionListener {
 		panel.add(rev);
 
 		// show menu options
-		menuList = new JList(menuItems);
+		menuList = new JList<>(menuItems);
 		menuList.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		menuList.setForeground(new Color(0, 85, 168));
 		menuList.setBackground(Color.WHITE);
 		menuList.setBorder(BorderFactory.createEtchedBorder());
 		menuList.setBounds(80, 40, 270, 150);
-		
+
 		// give scroll bar
 		JScrollPane scrollMenu = new JScrollPane(menuList);
 		scrollMenu.setBounds(80, 40, 270, 150);
@@ -189,19 +205,18 @@ public class MenuFrame extends JFrame implements ActionListener {
 		reviewList.setEditable(false);
 		reviewList.setLineWrap(true);
 		reviewList.setWrapStyleWord(true);
-		
-		//List reviews
+
+		// List reviews
 		int k = 1;
 		for (String r : reviewItems) {
 			if (k == 1) {
 				reviewList.append(r);
-			}
-			else {
+			} else {
 				reviewList.append("\n" + r);
 			}
 			k++;
 		}
-		
+
 		reviewList.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		reviewList.setForeground(new Color(0, 85, 168));
 		reviewList.setBackground(Color.WHITE);
@@ -212,7 +227,6 @@ public class MenuFrame extends JFrame implements ActionListener {
 		JScrollPane scrollReview = new JScrollPane(reviewList);
 		scrollReview.setBounds(80, 240, 270, 150);
 		panel.add(scrollReview);
-
 
 		setVisible(true);
 	}
@@ -227,6 +241,10 @@ public class MenuFrame extends JFrame implements ActionListener {
 		if (e.getSource() == back) {
 			this.dispose();
 			homeframe.setVisible(true);
+		}
+		
+		if (e.getSource() == make) {
+			ReviewPanel r = new ReviewPanel(this.restaurant);
 		}
 
 	}
