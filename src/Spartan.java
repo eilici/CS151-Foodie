@@ -54,11 +54,10 @@ public class Spartan extends User {
 	}
 
 	@Override
-	public String toString() {
-		/*
-		 * add
-		 */
-		return "change later";
+	public String toString() 
+	{
+		String str = "Username: " + userName + "\nPreferences: " + foodPref;
+		return str;
 	}
 
 	public String getUserName() {
