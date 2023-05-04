@@ -58,7 +58,6 @@ public class HomeFrame extends JFrame implements ActionListener {
 	private JTextArea filters;
 	private JScrollPane scroll;
 
-	private JButton make;
 	private JButton update;
 	private JButton go;
 
@@ -81,7 +80,7 @@ public class HomeFrame extends JFrame implements ActionListener {
 		filtered = refreshRestaurants();
 
 		// create window
-		setTitle("Foodie App");
+		setTitle("FOODIE App");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 756, 475);
@@ -92,7 +91,7 @@ public class HomeFrame extends JFrame implements ActionListener {
 		c.setLayout(null);
 
 		// image icon
-		Image img = new ImageIcon("src/Foodie/SpartanSpirit[2color]_4cp.png").getImage().getScaledInstance(100, 100,
+		Image img = new ImageIcon("src/foodie/SpartanSpirit[2color]_4cp.png").getImage().getScaledInstance(100, 100,
 				Image.SCALE_SMOOTH);
 
 		JLabel icon = new JLabel();
@@ -102,7 +101,7 @@ public class HomeFrame extends JFrame implements ActionListener {
 		c.add(icon);
 
 		// sjsu brand
-		sjsu = new JLabel("Foodie");
+		sjsu = new JLabel("FOODIE");
 		sjsu.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 35));
 		sjsu.setForeground(new Color(0, 85, 168));
 		sjsu.setSize(250, 50);
@@ -119,10 +118,10 @@ public class HomeFrame extends JFrame implements ActionListener {
 		c.add(welcome);
 
 		// show user filters
-		prefs = new JLabel("Filters: ");
+		prefs = new JLabel("FILTERS: ");
 		prefs.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 15));
 		prefs.setForeground(new Color(0, 85, 168));
-		prefs.setSize(250, 15);
+		prefs.setSize(250, 20);
 		prefs.setLocation(60, 200);
 		c.add(prefs);
 		
@@ -143,18 +142,8 @@ public class HomeFrame extends JFrame implements ActionListener {
 		scroll.setBounds(60, 230, 185, 25);
 		c.add(scroll);
 
-		// create button to make a new review
-		make = new JButton("New Review");
-		make.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
-		make.setForeground(new Color(0, 85, 168));
-		make.setBackground(new Color(234, 172, 53));
-		make.setSize(200, 35);
-		make.setLocation(54, 330);
-		make.addActionListener(this);
-		c.add(make);
-
 		// create button to update preferences
-		update = new JButton("Update Filters");
+		update = new JButton("UPDATE FILTERS");
 		update.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		update.setForeground(new Color(0, 85, 168));
 		update.setBackground(new Color(234, 172, 53));
@@ -163,12 +152,13 @@ public class HomeFrame extends JFrame implements ActionListener {
 		update.addActionListener(this);
 		c.add(update);
 
-		go = new JButton("See More");
+		//see more info on restaurant
+		go = new JButton("SEE MORE");
 		go.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		go.setForeground(new Color(0, 85, 168));
 		go.setBackground(new Color(234, 172, 53));
 		go.setSize(200, 35);
-		go.setLocation(54, 280);
+		go.setLocation(54, 330);
 		go.addActionListener(this);
 		c.add(go);
 
@@ -243,9 +233,6 @@ public class HomeFrame extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == make) {
-			ReviewPanel review = new ReviewPanel();
-		}
 		if (e.getSource() == update) {
 			new PrefPanel(this.user, this);
 		}
