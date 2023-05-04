@@ -11,20 +11,22 @@ Manasi created the state diagram. After the project was finished, Manasi went ba
 ## Team members working on the project (code) and report:
 For the project, Elena worked on both front end and backend. She 
 
-For the project, Robert focused primarily on front end, adding in several classes. 
+For the project, Robert worked on different wireframes, color schemes, and fonts which would fall under front-end development with the use of Java Swing that is used later in the application. He also constructed the skeleton class that would be later developed further by Elena.
 
 For the report, Manasi added several different methods and classes during the code. Also, she wrote the project report. 
 
 ## Team members working on the project presentation and their contributions to details:
 For the project presentation, Elena talked about the technical details covered in the presentation. She explained the different Object Oriented Design concepts that we implemented in the program. 
 
-Robert talked about the functionality, operations of the project, and the environment that we chose and the basis of choosing these environment.
+Robert spoke about different frames and designs that can be used for the application.
 
-Manasi was responsible for introducing the project during the presentation. She talked about the intentions of the application and the reasoning behind the project. 
+Manasi was responsible for introducing the project during the presentation. She talked about the intentions of the application and the reasoning behind the project. Additionally, she talked about the functionality, operations of the project, and the environment that we chose and the basis of choosing these environment.
 
 ## Problem/Issues:
+One of the problems that the team faced <Insert problem here>.
 
 ## Solution:
+The issue stated beforehand was solved by using <Insert method used to resolve problem above>.
 
 ## Assumptions / Operating Environments / Intended Usage
 
@@ -61,5 +63,9 @@ Desc | Diagram showing structure of project | Diagram showing behavior of classe
 
 ## Steps to run the code:
 Navigate to the main page of the C151-Foodie repository. Click the Code button at the top right hand side of the page and copy the HTTPS link given to clone the repository. Using the Command Prompt or Terminal to clone the project onto your local device. Then, open up any IDE that runs Java into the folder that holds the cloned code and run the application. We used Eclipse to run our application. 
+
+To run the code in a way that is intended by the developers, a font that is included in the src/resource folder should be installed on the terminal first. This will allow the program to be in its aesthetic expectation.
+
+After installing the Helvettica Nueue font, the main method under the Foodie class is to be run. This will bring the user to the login page where they can enter their credentials if they are an existing user; if they are not an existing user, they can click the sign up button to enter their username and password which will be saved to the .txt file that stores user information.
 
 ## Snapshot of the running program:
