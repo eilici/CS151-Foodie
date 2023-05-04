@@ -13,7 +13,7 @@ For the project, Elena worked on both the front end and back end of the applicat
 
 For the project, Robert worked on different wireframes, color schemes, and fonts which would fall under front-end development with the use of Java Swing that is used later in the application. He also constructed the skeleton class that would be later developed further by Elena.
 
-For the project, Manasi worked on implementing various methods to support the backend. For the report, she worked on the several parts, including the operations, functionality, intended usage, the diagrams, and the 
+For the project, Manasi worked on implementing various methods to support the backend. For the report, she worked on the several parts, including the operations, functionality, intended usage, and the diagrams.
 
 ## Team members working on the project presentation and their contributions to details:
 For the project presentation, Elena talked about the technical details covered in the presentation. She explained the different Object Oriented Design concepts that we implemented in the program. 
@@ -23,7 +23,7 @@ Robert spoke about different frames and designs that can be used for the applica
 Manasi was responsible for introducing the project during the presentation. She talked about the intentions of the application and the reasoning behind the project. Additionally, she talked about the functionality, operations of the project, and the environment that we chose and the basis of choosing these environment.
 
 ## Problem/Issues:
-One of the problems that the team faced <Insert problem here>.
+One of the problems that the team faced is updating the user information. We created a txt file to include the user information, specifically the 
 
 ## Solution:
 The issue stated beforehand was solved by using <Insert method used to resolve problem above>.
@@ -69,3 +69,14 @@ After installing the Helvettica Nueue font, navigate to the main page of the C15
 Once the repository is cloned and downladed, the main method under the Foodie class is to be run. This will bring the user to the login page where they can enter their credentials if they are an existing user; if they are not an existing user, they can click the sign up button to enter their username and password which will be saved to the .txt file that stores user information.
 
 ## Snapshot of the running program:
+<img width="565" alt="filter_change" src="https://user-images.githubusercontent.com/19766430/236347564-2297c20f-475b-4d11-be3b-aaf75b015b0a.png">
+<img width="560" alt="write_review" src="https://user-images.githubusercontent.com/19766430/236347544-0aecc4fd-dac9-41b6-86be-c50b944a4bfc.png">
+<img width="665" alt="sign_up_screen" src="https://user-images.githubusercontent.com/19766430/236347548-1605119f-3925-48de-84b7-4a8aaf339731.png">
+<img width="667" alt="sign_up_screen_pwerror" src="https://user-images.githubusercontent.com/19766430/236347551-e2993c20-e540-4cd1-9928-1766f8bc6d83.png">
+<img width="551" alt="see_more" src="https://user-images.githubusercontent.com/19766430/236347552-0cebf715-c243-4317-85d5-92748f53fa77.png">
+<img width="641" alt="see_more_prefs" src="https://user-images.githubusercontent.com/19766430/236347553-feec45d2-58d0-486c-bbdb-5f8bd2313e72.png">
+<img width="563" alt="review_included" src="https://user-images.githubusercontent.com/19766430/236347555-f2c32c49-7b75-49ad-be3b-e2790d6fac38.png">
+<img width="562" alt="restaurant page" src="https://user-images.githubusercontent.com/19766430/236347556-236da3ff-ee83-4f23-9bfc-1d228519f4ae.png">
+<img width="557" alt="menu_page" src="https://user-images.githubusercontent.com/19766430/236347560-4d722c44-fa86-4a82-a697-213d360bda1c.png">
+<img width="560" alt="login_screen" src="https://user-images.githubusercontent.com/19766430/236347562-fa7afa05-5166-473c-826b-ea5233c5bcbd.png">
+<img width="561" alt="filter_update" src="https://user-images.githubusercontent.com/19766430/236347563-7e43e7ef-e9b5-4efc-be6f-9242ca4d4f7c.png">
