@@ -178,7 +178,6 @@ public class MenuFrame extends JFrame implements ActionListener {
 		menuList.setBackground(Color.WHITE);
 		menuList.setBorder(BorderFactory.createEtchedBorder());
 		menuList.setBounds(80, 40, 270, 150);
-		menuList.addListSelectionListener(this);
 		
 		// give scroll bar
 		JScrollPane scrollMenu = new JScrollPane(menuList);
