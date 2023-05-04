@@ -1,36 +1,25 @@
 package foodie;
 
+import static javax.swing.JOptionPane.showMessageDialog;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import static javax.swing.JOptionPane.showMessageDialog;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextArea;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -38,214 +27,161 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.HashSet;
-// Created 4-30-2023 by Elena Ilic
-//5-3-2023 Elena Ilic: fixed restaurant list from leading to wrong menu. removed defunct createList.
 
-public class HomeFrame extends JFrame implements ActionListener {
+//edit 4-30-2023 Elena Ilic - remove no decoration declaration
+//                          - set text to not editable
+// edit 5-2-2023 Elena Ilic - replace labels with buttons
+//                          - write actionlistener for buttons
+public class LoginFrame extends JFrame implements ActionListener {
 
-	private String username;
-	private Spartan user;
+	private Image img_logo = new ImageIcon("src/foodie/SpartanSpirit[2color]_4cp.png").getImage().getScaledInstance(100,
+			100, Image.SCALE_SMOOTH);
 
-	private Container c;
+	private JPanel contentPane;
+	private JTextField txtUsername;
+	private JPasswordField pwdPassword;
 
-	private JLabel welcome;
-	private JLabel restaurant;
-	private JLabel prefs;
-	private JLabel icon;
-	private JLabel sjsu;
-	
-	private JTextArea filters;
-	private JScrollPane scroll;
+	private JButton sign;
+	private JButton log;
 
-	private JButton update;
-	private JButton go;
+	private static ArrayList<User> users = Foodie.foodieUsers;
 
-	// NAMES of restaurants
-	private JList restaurants;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
 
-	// filtered restaurant array
-	private Restaurant[] filtered;
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginFrame frame = new LoginFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-	// Restaurants
-	private static ArrayList<Restaurant> list = Foodie.foodieRestaurants;
-
-	public HomeFrame(Spartan user) {
-		this.user = user;
-		username = user.getUserName();
-
-		// filter Restaurant view based on preferences
-		// restaurants sorted by criteria: has at least one preference specified by user
-		// prefs
-		filtered = refreshRestaurants();
-
-		// create window
-		setTitle("FOODIE App");
-
+	/**
+	 * Create the frame.
+	 */
+	public LoginFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 756, 475);
 		setResizable(false);
-		getContentPane().setBackground(Color.WHITE);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 
-		c = getContentPane();
-		c.setLayout(null);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-		// image icon
-		Image img = new ImageIcon("src/foodie/SpartanSpirit[2color]_4cp.png").getImage().getScaledInstance(100, 100,
-				Image.SCALE_SMOOTH);
+		JPanel panel = new JPanel();
+		panel.setBounds(72, 208, 200, 30);
+		contentPane.add(panel);
+		panel.setLayout(null);
 
-		JLabel icon = new JLabel();
-		icon.setBounds(10, 50, 100, 100);
-		icon.setIcon(new ImageIcon(img));
+		txtUsername = new JTextField();
+		txtUsername.setText("Username");
+		txtUsername.setBounds(10, 5, 180, 20);
+		panel.add(txtUsername);
+		txtUsername.setColumns(10);
 
-		c.add(icon);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(72, 249, 200, 30);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
 
-		// sjsu brand
-		sjsu = new JLabel("FOODIE");
-		sjsu.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 35));
-		sjsu.setForeground(new Color(0, 85, 168));
-		sjsu.setSize(250, 50);
-		sjsu.setBounds(120, 78, 152, 88);
+		pwdPassword = new JPasswordField();
+		pwdPassword.setText("Password");
+		pwdPassword.setEchoChar('*');
+		pwdPassword.setBounds(10, 5, 180, 20);
+		panel_1.add(pwdPassword);
 
-		c.add(sjsu);
+		JLabel lblIconLogo = new JLabel("");
+		lblIconLogo.setBounds(10, 50, 100, 100);
+		contentPane.add(lblIconLogo);
+		lblIconLogo.setIcon(new ImageIcon(img_logo));
 
-		// create welcome label
-		welcome = new JLabel("Welcome, " + username + "!");
-		welcome.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
-		welcome.setForeground(new Color(0, 85, 168));
-		welcome.setSize(250, 35);
-		welcome.setLocation(60, 160);
-		c.add(welcome);
+		log = new JButton("LOG IN");
+		log.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 20));
+		log.setForeground(new Color(0, 85, 168));
+		log.setBackground(new Color(234, 172, 53));
+		log.setSize(110, 41);
+		log.setLocation(107, 306);
+		log.addActionListener(this);
+		this.add(log);
 
-		// show user filters
-		prefs = new JLabel("FILTERS: ");
-		prefs.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 15));
-		prefs.setForeground(new Color(0, 85, 168));
-		prefs.setSize(250, 20);
-		prefs.setLocation(60, 200);
-		c.add(prefs);
-		
-		//create textarea displaying user filters
-		System.out.println(user.getFoodPref());
-		filters = new JTextArea(user.getFoodPref().toString());
-		filters.setEditable(false);
-		filters.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 15));
-		filters.setForeground(new Color(0, 85, 168));
-		filters.setSize(185, 25);
-		filters.setLocation(60,240);
+		JTextArea txtrSjsuFoodieApp = new JTextArea();
+		txtrSjsuFoodieApp.setForeground(new Color(0, 85, 168));
+		txtrSjsuFoodieApp.setEditable(false);
+		txtrSjsuFoodieApp.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 28));
+		txtrSjsuFoodieApp.setText("SJSU\r\nFoodie App");
+		txtrSjsuFoodieApp.setBounds(120, 62, 152, 88);
+		contentPane.add(txtrSjsuFoodieApp);
 
-		filters.setLineWrap(true);
-		filters.setWrapStyleWord(true);
-		
-		//give scroll bar
-		scroll = new JScrollPane(filters);
-		scroll.setBounds(60, 230, 185, 25);
-		c.add(scroll);
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(0, 85, 168));
+		panel_2.setBounds(311, 0, 445, 475);
+		contentPane.add(panel_2);
+		panel_2.setLayout(null);
 
-		// create button to update preferences
-		update = new JButton("UPDATE FILTERS");
-		update.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
-		update.setForeground(new Color(0, 85, 168));
-		update.setBackground(new Color(234, 172, 53));
-		update.setSize(200, 35);
-		update.setLocation(54, 380);
-		update.addActionListener(this);
-		c.add(update);
+		JTextArea txtrWelcomeSpartanTo = new JTextArea();
+		txtrWelcomeSpartanTo.setEditable(false);
+		txtrWelcomeSpartanTo.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 28));
+		txtrWelcomeSpartanTo.setForeground(new Color(255, 255, 255));
+		txtrWelcomeSpartanTo.setText("Welcome, Spartan\r\nTo the SJSU Foodie App!");
+		txtrWelcomeSpartanTo.setBackground(new Color(0, 85, 168));
+		txtrWelcomeSpartanTo.setBounds(54, 168, 339, 76);
+		panel_2.add(txtrWelcomeSpartanTo);
 
-		//see more info on restaurant
-		go = new JButton("SEE MORE");
-		go.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
-		go.setForeground(new Color(0, 85, 168));
-		go.setBackground(new Color(234, 172, 53));
-		go.setSize(200, 35);
-		go.setLocation(54, 330);
-		go.addActionListener(this);
-		c.add(go);
+		JTextArea txtrFirstTime = new JTextArea();
+		txtrFirstTime.setText("First time?");
+		txtrFirstTime.setEditable(false);
+		txtrFirstTime.setForeground(Color.WHITE);
+		txtrFirstTime.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
+		txtrFirstTime.setBackground(new Color(0, 85, 168));
+		txtrFirstTime.setBounds(170, 270, 141, 30);
+		panel_2.add(txtrFirstTime);
 
-		// create color block division
-		JPanel panel = new JPanel(null);
-		panel.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		panel.setBackground(new Color(0, 85, 168));
-		panel.setBounds(311, 0, 445, 475);
+		sign = new JButton("SIGN UP");
+		sign.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 20));
+		sign.setForeground(new Color(0, 85, 168));
+		sign.setBackground(new Color(234, 172, 53));
+		sign.setSize(120, 41);
+		sign.setLocation(164, 306);
+		sign.addActionListener(this);
+		panel_2.add(sign);
 
-		// create restaurant listing
-		restaurant = new JLabel("Restaurants fitting your criteria:");
-		restaurant.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 20));
-		restaurant.setForeground(Color.WHITE);
-		restaurant.setSize(350, 35);
-		restaurant.setBounds(80, 20, 350, 35);
-		panel.add(restaurant);
+		this.setVisible(true);
 
-		// show restaurant listings
-		restaurants = new JList(filtered);
-		restaurants.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
-		restaurants.setForeground(new Color(0, 85, 168));
-		restaurants.setBackground(Color.WHITE);
-		restaurants.setBorder(BorderFactory.createEtchedBorder());
-		restaurants.setBounds(80, 60, 270, 300);
-
-		panel.add(restaurants);
-
-		// add panel
-		c.add(panel);
-		setVisible(true);
 	}
 
-	// getter to update label
-	public JTextArea getFilters() {
-		return filters;
-	}
-
-	public JList getRestaurants() {
-		return restaurants;
-	}
-
-	// filters restaurant list based on if it contains at least one preference
-	// specified by user's preferences
-	public Restaurant[] refreshRestaurants() {
-		HashSet<Restaurant> nodup = new HashSet<>();
-
-		// if restaurant fits requirements set by user prefs, add to hashset
-		for (Restaurant r : list) {
-
-			for (Preferences p : user.getFoodPref()) {
-				// add preference
-				if (r.getContainsPrefs().contains(p)) {
-					nodup.add(r);
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == log) {
+			if (txtUsername.getText().equals("Username") || txtUsername.getText().equals("")) {
+				showMessageDialog(null, "Please enter a valid username.");
+				return;
+			}
+			if (new String(pwdPassword.getPassword()).equals("Password")
+					|| new String(pwdPassword.getPassword()).equals("")) {
+				showMessageDialog(null, "Please enter a valid password.");
+				return;
+			} else {
+				for (User u : users) {
+					if (u.getUserName().equals(txtUsername.getText())
+							&& u.getPassword().equals(new String(pwdPassword.getPassword()))) {
+						HomeFrame h = new HomeFrame((Spartan) u);
+						this.dispose();
+					}
 				}
 			}
 		}
 
-		// if user has no preferences show all restaurants
-		if (user.getFoodPref().isEmpty()) {
-			nodup.addAll(list);
-		}
-
-		Restaurant[] finished = new Restaurant[nodup.size()];
-		// relocation of objects back into array
-		int i = 0;
-		for (Restaurant r : nodup) {
-			finished[i] = r;
-			i++;
-		}
-
-		return finished;
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == update) {
-			new PrefPanel(this.user, this);
-		}
-		if (e.getSource() == go) {
-			if (restaurants.getSelectedValue() == null) {
-				showMessageDialog(null, "Please select a Restaurant.");
-			}
-			
-			Restaurant restaurant = (Restaurant)restaurants.getSelectedValue();;
-			MenuFrame menu = new MenuFrame(restaurant, this);
-			this.setVisible(false);
-			
+		if (e.getSource() == sign) {
+			SignupFrame s = new SignupFrame();
 		}
 	}
-
 }
