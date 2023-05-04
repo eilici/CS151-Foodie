@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Spartan extends User {
-	private List<Preferences> foodPref;
+	private List<ArrayList<Preferences>> foodPref;
 	private String userName;
 	private String password;
 
@@ -18,7 +18,7 @@ public class Spartan extends User {
 		this.foodPref.replaceAll(null);
 	}
 
-	public Spartan(String userName, String password, Preferences[] foodPref) {
+	public Spartan(String userName, String password, ArrayList<Preferences> foodPref) {
 		this.userName = userName;
 		this.password = password;
 		this.foodPref = Arrays.asList(foodPref);
@@ -54,11 +54,10 @@ public class Spartan extends User {
 	}
 
 	@Override
-	public String toString() {
-		/*
-		 * add
-		 */
-		return "change later";
+	public String toString() 
+	{
+		String str = "Username: " + userName + "\nPreferences: " + foodPref;
+		return str;
 	}
 
 	public String getUserName() {
@@ -77,8 +76,16 @@ public class Spartan extends User {
 		this.password = password;
 	}
 
-	public void setFoodPref(List<Preferences> foodPref) {
+	public void setFoodPref(List<ArrayList<Preferences>> foodPref) {
 		this.foodPref = foodPref;
 	}
 	
+	public static void main(String[] args)
+	{
+		ArrayList<Preferences> preference = new ArrayList<Preferences>();
+		preference.add(Preferences.VEGAN);
+		Spartan test = new Spartan("mdnekkar", "2342323", preference);
+		
+		System.out.println(test.toString());
+	}
 }
