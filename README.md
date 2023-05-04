@@ -69,14 +69,14 @@ After installing the Helvettica Nueue font, navigate to the main page of the C15
 Once the repository is cloned and downladed, the main method under the Foodie class is to be run. This will bring the user to the login page where they can enter their credentials if they are an existing user; if they are not an existing user, they can click the sign up button to enter their username and password which will be saved to the .txt file that stores user information.
 
 ## Snapshot of the running program:
-<img width="560" alt="write_review" src="https://user-images.githubusercontent.com/19766430/236347653-6b331e56-8d73-488a-a508-05910b3a01b7.png">
+<img width="560" alt="login_screen" src="https://user-images.githubusercontent.com/19766430/236347670-9fd946e3-4453-4244-a2c4-a92d48af0e6e.png">
 <img width="665" alt="sign_up_screen" src="https://user-images.githubusercontent.com/19766430/236347657-2059bb0b-8f49-4517-af6d-42d5c40e71d6.png">
 <img width="667" alt="sign_up_screen_pwerror" src="https://user-images.githubusercontent.com/19766430/236347658-4fe35e06-8136-4db6-849e-69de2c7ea503.png">
+<img width="565" alt="filter_change" src="https://user-images.githubusercontent.com/19766430/236347673-af52ef06-7ca6-4674-ac52-686e10ff276e.png">
+<img width="562" alt="restaurant page" src="https://user-images.githubusercontent.com/19766430/236347666-17b0f60e-8d07-45ac-a9ba-43989b94c945.png">
+<img width="561" alt="filter_update" src="https://user-images.githubusercontent.com/19766430/236347671-2d84553f-99a9-4a23-9fca-8a81f76ab4d6.png">
 <img width="551" alt="see_more" src="https://user-images.githubusercontent.com/19766430/236347660-6c56e015-db0c-441d-b1d0-a9ec60d05e5a.png">
 <img width="641" alt="see_more_prefs" src="https://user-images.githubusercontent.com/19766430/236347661-f96226a1-efae-4147-ab09-59eead95e603.png">
-<img width="563" alt="review_included" src="https://user-images.githubusercontent.com/19766430/236347664-c43915cc-3483-4f24-8647-6c5c6dfa70d2.png">
-<img width="562" alt="restaurant page" src="https://user-images.githubusercontent.com/19766430/236347666-17b0f60e-8d07-45ac-a9ba-43989b94c945.png">
 <img width="557" alt="menu_page" src="https://user-images.githubusercontent.com/19766430/236347669-d9577468-a551-47ba-a12a-3282e6940b50.png">
-<img width="560" alt="login_screen" src="https://user-images.githubusercontent.com/19766430/236347670-9fd946e3-4453-4244-a2c4-a92d48af0e6e.png">
-<img width="561" alt="filter_update" src="https://user-images.githubusercontent.com/19766430/236347671-2d84553f-99a9-4a23-9fca-8a81f76ab4d6.png">
-<img width="565" alt="filter_change" src="https://user-images.githubusercontent.com/19766430/236347673-af52ef06-7ca6-4674-ac52-686e10ff276e.png">
+<img width="560" alt="write_review" src="https://user-images.githubusercontent.com/19766430/236347653-6b331e56-8d73-488a-a508-05910b3a01b7.png">
+<img width="563" alt="review_included" src="https://user-images.githubusercontent.com/19766430/236347664-c43915cc-3483-4f24-8647-6c5c6dfa70d2.png">
