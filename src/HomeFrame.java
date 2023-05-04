@@ -18,7 +18,9 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -36,6 +38,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashSet;
 // Created 4-30-2023 by Elena Ilic
+//5-3-2023 Elena Ilic: fixed restaurant list from leading to wrong menu. removed defunct createList.
 
 public class HomeFrame extends JFrame implements ActionListener {
 
@@ -49,6 +52,9 @@ public class HomeFrame extends JFrame implements ActionListener {
 	private JLabel prefs;
 	private JLabel icon;
 	private JLabel sjsu;
+	
+	private JTextArea filters;
+	private JScrollPane scroll;
 
 	private JButton make;
 	private JButton update;
@@ -71,9 +77,6 @@ public class HomeFrame extends JFrame implements ActionListener {
 		// restaurants sorted by criteria: has at least one preference specified by user
 		// prefs
 		filtered = refreshRestaurants();
-
-		// get Restaurant names
-		String[] restaurantNames = createList(filtered);
 
 		// create window
 		setTitle("Foodie App");
@@ -107,19 +110,34 @@ public class HomeFrame extends JFrame implements ActionListener {
 
 		// create welcome label
 		welcome = new JLabel("Welcome, " + username + "!");
-		welcome.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 25));
+		welcome.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		welcome.setForeground(new Color(0, 85, 168));
 		welcome.setSize(250, 35);
-		welcome.setLocation(60, 180);
+		welcome.setLocation(60, 160);
 		c.add(welcome);
 
 		// show user filters
-		prefs = new JLabel("Filters: " + user.getFoodPref());
+		prefs = new JLabel("Filters: ");
 		prefs.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 15));
 		prefs.setForeground(new Color(0, 85, 168));
-		prefs.setSize(250, 35);
-		prefs.setLocation(60, 220);
+		prefs.setSize(250, 15);
+		prefs.setLocation(60, 200);
 		c.add(prefs);
+		
+		//create textarea displaying user filters
+		System.out.println(user.getFoodPref());
+		filters = new JTextArea(user.getFoodPref().toString());
+		filters.setEditable(false);
+		filters.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 15));
+		filters.setForeground(new Color(0, 85, 168));
+		filters.setSize(185, 25);
+		filters.setLocation(60,240);
+		filters.setWrapStyleWord(true);
+		filters.setLineWrap(true);
+		filters.setWrapStyleWord(true);
+		scroll = new JScrollPane(filters);
+		scroll.setBounds(60, 230, 185, 25);
+		c.add(scroll);
 
 		// create button to make a new review
 		make = new JButton("New Review");
@@ -165,7 +183,7 @@ public class HomeFrame extends JFrame implements ActionListener {
 		panel.add(restaurant);
 
 		// show restaurant listings
-		restaurants = new JList(restaurantNames);
+		restaurants = new JList(filtered);
 		restaurants.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
 		restaurants.setForeground(new Color(0, 85, 168));
 		restaurants.setBackground(Color.WHITE);
@@ -180,23 +198,12 @@ public class HomeFrame extends JFrame implements ActionListener {
 	}
 
 	// getter to update label
-	public JLabel getPrefs() {
-		return prefs;
+	public JTextArea getFilters() {
+		return filters;
 	}
 
 	public JList getRestaurants() {
 		return restaurants;
-	}
-
-	// creates string array of Restaurant names according to filters
-	public String[] createList(Restaurant[] filter) {
-		String[] restaurantNames = new String[filter.length];
-		int i = 0;
-		for (Restaurant r : filter) {
-			restaurantNames[i] = r.getStoreName();
-			i++;
-		}
-		return restaurantNames;
 	}
 
 	// filters restaurant list based on if it contains at least one preference
@@ -239,9 +246,11 @@ public class HomeFrame extends JFrame implements ActionListener {
 			new PrefPanel(this.user, this);
 		}
 		if (e.getSource() == go) {
-			Restaurant restaurant = filtered[restaurants.getSelectedIndex()];
+			restaurants.getSelectedValue();
+			Restaurant restaurant = (Restaurant)restaurants.getSelectedValue();;
 			MenuFrame menu = new MenuFrame(restaurant, this);
 			this.setVisible(false);
+			
 		}
 	}
 
