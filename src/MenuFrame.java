@@ -21,6 +21,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -38,34 +39,48 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 //Created 4-30-2023 by Elena Ilic
 
-public class MenuFrame extends JFrame implements ActionListener, ListSelectionListener {
+public class MenuFrame extends JFrame implements ActionListener {
 
 	private Container c;
 
 	private JLabel sjsu;
 	private JLabel menu;
+	private JLabel rev;
+
 	private JLabel desc1;
 	private JLabel desc2;
 
 	private JButton go;
 	private JButton back;
-	private JButton rev;
 
 	private JList menuList;
+	private JTextArea reviewList;
+
 	private ArrayList<Food> menuInput;
 	private HomeFrame homeframe;
+	private ArrayList<String> reviewInput;
 
 	public MenuFrame(Restaurant restaurant, HomeFrame homeframe) {
 		menuInput = restaurant.getMenu();
+		reviewInput = restaurant.getReviews();
+
 		this.homeframe = homeframe;
-		
+
 		String[] menuItems = new String[menuInput.size()];
+		String[] reviewItems = new String[reviewInput.size()];
 
 		// set NAMES to a list to display
 		int i = 0;
-		for (Food f : menuInput) {
-			menuItems[i] = menuInput.get(i).getName();
+		for (String s : reviewInput) {
+			reviewItems[i] = reviewInput.get(i);
 			i++;
+		}
+
+		// set NAMES to a list to display
+		int j = 0;
+		for (Food f : menuInput) {
+			menuItems[j] = menuInput.get(j).getName();
+			j++;
 		}
 
 		setTitle("Foodie App");
@@ -116,19 +131,10 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 		go.setForeground(new Color(0, 85, 168));
 		go.setBackground(new Color(234, 172, 53));
 		go.setSize(200, 35);
-		go.setLocation(54, 280);
+		go.setLocation(54, 330);
 		go.addActionListener(this);
 		c.add(go);
-		
-		rev = new JButton("See Reviews");
-		rev.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
-		rev.setForeground(new Color(0, 85, 168));
-		rev.setBackground(new Color(234, 172, 53));
-		rev.setSize(200, 35);
-		rev.setLocation(54, 330);
-		rev.addActionListener(this);
-		c.add(rev);
-		
+
 		// go back to main page
 		back = new JButton("Go Back");
 		back.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
@@ -151,11 +157,19 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 
 		// create menu listing
 		menu = new JLabel("Menu of: " + restaurant.getStoreName());
-		menu.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 20));
+		menu.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 15));
 		menu.setForeground(Color.WHITE);
 		menu.setSize(350, 35);
-		menu.setBounds(80, 20, 350, 35);
+		menu.setBounds(80, 10, 350, 35);
 		panel.add(menu);
+
+		// create review listing
+		rev = new JLabel("Reviews of: " + restaurant.getStoreName());
+		rev.setFont(new Font("HelveticaNeue MediumCond", Font.BOLD, 15));
+		rev.setForeground(Color.WHITE);
+		rev.setSize(350, 35);
+		rev.setBounds(80, 210, 350, 35);
+		panel.add(rev);
 
 		// show menu options
 		menuList = new JList(menuItems);
@@ -163,17 +177,45 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 		menuList.setForeground(new Color(0, 85, 168));
 		menuList.setBackground(Color.WHITE);
 		menuList.setBorder(BorderFactory.createEtchedBorder());
-		menuList.setBounds(80, 60, 270, 300);
+		menuList.setBounds(80, 40, 270, 150);
 		menuList.addListSelectionListener(this);
-		panel.add(menuList);
+		
+		// give scroll bar
+		JScrollPane scrollMenu = new JScrollPane(menuList);
+		scrollMenu.setBounds(80, 40, 270, 150);
+		panel.add(scrollMenu);
+
+		// show review options
+		reviewList = new JTextArea();
+		reviewList.setEditable(false);
+		reviewList.setLineWrap(true);
+		reviewList.setWrapStyleWord(true);
+		
+		//List reviews
+		int k = 1;
+		for (String r : reviewItems) {
+			if (k == 1) {
+				reviewList.append(r);
+			}
+			else {
+				reviewList.append("\n" + r);
+			}
+			k++;
+		}
+		
+		reviewList.setFont(new Font("HelveticaNeue MediumCond", Font.PLAIN, 20));
+		reviewList.setForeground(new Color(0, 85, 168));
+		reviewList.setBackground(Color.WHITE);
+		reviewList.setBorder(BorderFactory.createEtchedBorder());
+		reviewList.setBounds(80, 240, 270, 150);
+
+		// give scroll bar
+		JScrollPane scrollReview = new JScrollPane(reviewList);
+		scrollReview.setBounds(80, 240, 270, 150);
+		panel.add(scrollReview);
+
 
 		setVisible(true);
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -186,10 +228,6 @@ public class MenuFrame extends JFrame implements ActionListener, ListSelectionLi
 		if (e.getSource() == back) {
 			this.dispose();
 			homeframe.setVisible(true);
-		}
-		
-		if (e.getSource() == rev) {
-			ReviewView reviews = new ReviewView();
 		}
 
 	}
