@@ -15,6 +15,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -132,9 +134,11 @@ public class HomeFrame extends JFrame implements ActionListener {
 		filters.setForeground(new Color(0, 85, 168));
 		filters.setSize(185, 25);
 		filters.setLocation(60,240);
-		filters.setWrapStyleWord(true);
+
 		filters.setLineWrap(true);
 		filters.setWrapStyleWord(true);
+		
+		//give scroll bar
 		scroll = new JScrollPane(filters);
 		scroll.setBounds(60, 230, 185, 25);
 		c.add(scroll);
@@ -246,7 +250,10 @@ public class HomeFrame extends JFrame implements ActionListener {
 			new PrefPanel(this.user, this);
 		}
 		if (e.getSource() == go) {
-			restaurants.getSelectedValue();
+			if (restaurants.getSelectedValue() == null) {
+				showMessageDialog(null, "Please select a Restaurant.");
+			}
+			
 			Restaurant restaurant = (Restaurant)restaurants.getSelectedValue();;
 			MenuFrame menu = new MenuFrame(restaurant, this);
 			this.setVisible(false);
