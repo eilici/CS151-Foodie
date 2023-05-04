@@ -231,6 +231,14 @@ public class MenuFrame extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
+	public JTextArea getReviewList() {
+		return reviewList;
+	}
+	
+	public void setReviewList(JTextArea t) {
+		reviewList = t;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == go) {
@@ -244,7 +252,7 @@ public class MenuFrame extends JFrame implements ActionListener {
 		}
 		
 		if (e.getSource() == make) {
-			ReviewPanel r = new ReviewPanel(this.restaurant);
+			ReviewPanel r = new ReviewPanel(this.restaurant, this);
 		}
 
 	}
