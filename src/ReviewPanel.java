@@ -80,7 +80,7 @@ public class ReviewPanel extends JFrame implements ActionListener {
 		if(txtrReview.getText() == null) {
 			JOptionPane.showMessageDialog(null,"Please enter a response","Invalid response", JOptionPane.OK_OPTION);
 		}else {
-			restaurant.addReview(txtrReview);
+			restaurant.addReview(txtrReview.getText());
 			JOptionPane.showMessageDialog(null, "Review Added!", "Success", JOptionPane.OK_OPTION);
 			ReviewPanel.this.dispose();
 		}
