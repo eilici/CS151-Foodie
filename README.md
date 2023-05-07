@@ -13,7 +13,7 @@ For the project, Elena worked on both the front end and back end of the applicat
 
 For the project, Robert worked on different wireframes, color schemes, and fonts which would fall under front-end development with the use of Java Swing that is used later in the application. He also constructed the skeleton class that would be later developed further by Elena.
 
-For the project, Manasi worked on implementing various methods to support the backend. For the report, she worked on the several parts, including the operations, functionality, intended usage, the diagrams, and the 
+For the project, Manasi worked on implementing various methods to support the backend. For the report, she worked on the several parts, including the operations, functionality, intended usage, and the diagrams.
 
 ## Team members working on the project presentation and their contributions to details:
 For the project presentation, Elena talked about the technical details covered in the presentation. She explained the different Object Oriented Design concepts that we implemented in the program. 
