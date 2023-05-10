@@ -23,7 +23,7 @@ public class Foodie {
 		scanner1.close();
 
 		// split the restaurant list
-		String[] nameSeparation = restaurants.split("#");
+		String[] nameSeparation = restaurants.split(" # ");
 		// convert into list
 		ArrayList<String> rlist = new ArrayList<>();
 		for (String s : nameSeparation) {
@@ -131,7 +131,6 @@ public class Foodie {
 
 			// create user prefs
 			String[] userPrefs = d[2].split("&");
-			
 
 			// convert user prefs to enum
 			Preferences[] uPrefs = new Preferences[userPrefs.length];
@@ -140,20 +139,19 @@ public class Foodie {
 				uPrefs[i] = Preferences.valueOf(userPrefs[i]);
 			}
 
-
 			// create user and add to list
 			User user = new Spartan(username, password, uPrefs);
 			foodieUsers.add(user);
 			System.out.println(user.toString());
-			
-			
-			
-			
-		
 
-		//TEST
-		//User eilic = new Spartan("eilic","123Password!",new Preferences[]{Preferences.VEGAN}); 
-		//HomeFrame h = new HomeFrame((Spartan)eilic);
+			// TEST
+			// User eilic = new Spartan("eilic","123Password!",new
+			// Preferences[]{Preferences.VEGAN});
+			// HomeFrame h = new HomeFrame((Spartan)eilic);
+			
+			// new MenuFrame(Foodie.foodieRestaurants.get(0));
+
+		}
 		LoginFrame l = new LoginFrame();
-		//new MenuFrame(Foodie.foodieRestaurants.get(0));
-}}}
+	}
+}
